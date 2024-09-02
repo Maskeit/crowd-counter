@@ -49,7 +49,8 @@ while cap.isOpened():
                         cv2.putText(frame, f'{label} {conf:.2f}', (int(x1), int(y1)-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
         # Enviar el número de personas detectadas a la API
-        send_person_count(person_count)
+        if person_count > 0:
+            send_person_count(person_count)
         # Mostrar el número de personas detectadas en la imagen
         cv2.putText(frame, f'Personas detectadas: {person_count}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
