@@ -1,0 +1,19 @@
+{
+    "settings_version": "0.0.4",
+    "datasets_dir": "/Users/miguelalejandrearreola/PycharmProjects/crowd-counter/datasets", 
+    "weights_dir": "weights", 
+    "runs_dir": "runs", 
+    "uuid": "965bdd58f4adcf0448632f1209f177b7d7e37c51f0f11e7f70511e909e1d36ee", 
+    "sync": True, 
+    "api_key": "", 
+    "openai_api_key": "", 
+    "clearml": True, 
+    "comet": True, 
+    "dvc": True, 
+    "hub": True, 
+    "mlflow": True, 
+    "neptune": True, 
+    "raytune": True, 
+    "tensorboard": True, 
+    "wandb": True
+}

@@ -1,17 +1,22 @@
+import paho.mqtt.client as mqtt
 from ultralytics import YOLO
 import cv2
 import time
-from process import send_person_count
+
 model = YOLO("yolov8m.pt")
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 if not cap.isOpened():
     print("Error: no se puede abrir la camara")
     exit()
 
+# Configurar el cliente MQTT
+mqtt_client = mqtt.Client()
+mqtt_client.connect("localhost", 1883, 60)  # 'localhost' o la IP del broker MQTT
+
 # Intervalo de detección en segundos
-detection_interval = 5
+detection_interval = 2
 last_detection_time = 0
 
 while cap.isOpened():
@@ -50,7 +55,8 @@ while cap.isOpened():
 
         # Enviar el número de personas detectadas a la API
         if person_count > 0:
-            send_person_count(person_count)
+            mqtt_client.publish("crowd_data/eventos", str(person_count))
+        
         # Mostrar el número de personas detectadas en la imagen
         cv2.putText(frame, f'Personas detectadas: {person_count}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
