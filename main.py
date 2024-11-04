@@ -2,10 +2,14 @@ import paho.mqtt.client as mqtt
 from ultralytics import YOLO
 import cv2
 import time
+import os
 
-model = YOLO("yolov8m.pt")
+model_path = os.path.join(os.path.dirname(__file__), 'yolov8n.pt')
 
-cap = cv2.VideoCapture(1)
+model = YOLO(model_path)
+# Path to the bundled model (adjust based on where you placed the model)
+
+cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
     print("Error: no se puede abrir la camara")
@@ -16,7 +20,7 @@ mqtt_client = mqtt.Client()
 mqtt_client.connect("localhost", 1883, 60)  # 'localhost' o la IP del broker MQTT
 
 # Intervalo de detección en segundos
-detection_interval = 2
+detection_interval = 5
 last_detection_time = 0
 
 while cap.isOpened():
@@ -61,7 +65,7 @@ while cap.isOpened():
         cv2.putText(frame, f'Personas detectadas: {person_count}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
     # mostra la imagen con las detecciones
-    cv2.imshow("smartCrowd 1.0.0", frame)
+    # cv2.imshow("smartCrowd 1.0.0", frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
     continue

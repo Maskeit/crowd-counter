@@ -1,5 +1,5 @@
 /.venv
-/yolovenv
+/clean_env
 /build
 /dist
 /__pycache__
@@ -10,3 +10,4 @@ main.spec
 yolov8m.pt
 yolov8n.pt
 yolov8x.pt
+/.idea

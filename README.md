@@ -30,7 +30,7 @@ python3 main.py or ./dist/main for executable
 - **Install method**: git
 - **RAM**: 8.00 GB
 - **CPU**: Apple M1
-  **Installed Packages**:
+    **Installed Packages**:
 - numpy: ✅ 1.26.4 (version compatible)
 - matplotlib: ✅ 3.9.1 (version compatible)
 - opencv-python: ✅ 4.10.0.84 (version compatible)
